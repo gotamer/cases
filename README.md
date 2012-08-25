@@ -1,10 +1,10 @@
 Go String Manipulation
 =======
 
-#Uc
+###`strings.Uc(s string)`
 Uc returns a copy of the string s with the first unicode words first letter mapped to it's upper case  
 
-#UcAll
+###`strings.UcAll(s string)`
 UcAll returns a copy of the string s with all unicode words first letter mapped to their upper case
 
 
@@ -23,3 +23,10 @@ func main(){
 	print(satz)
 }
 ```
+###Result:  
+Run start ...
+
+Uc returns a copy of the string s with the first unicode words first letter mapped to it's upper case  
+UcAll Returns A Copy Of The String S With All Unicode Words First Letter Mapped To Their Upper Case  
+ 
+Run finished 0, process exited normally.
