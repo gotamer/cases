@@ -22,3 +22,10 @@ func TestCamel(t *testing.T) {
 	satz = Camel(satz)
 	print(satz)
 }
+
+func TestUnCamel(t *testing.T) {
+	print("\n")
+	satz := "case.UnCamelReturnsACopyOfTheStringSWithTheWordsSeperatedBySpace\n"
+	satz = UnCamel(satz)
+	print(satz)
+}
