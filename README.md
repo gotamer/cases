@@ -10,5 +10,5 @@ UcAll returns a copy of the string s with all unicode words, first letters mappe
 ### CamelCase `cases.Camel(s string)` 
 Camel returns a copy of the string s with all unicode words, first letters mapped to their upper case, and spaces removed 
 
-
-
+### Un Camel Case `cases.UnCamel(s string)` 
+UnCamel returns a copy of the string s with all upper case letters seperated by spaces
