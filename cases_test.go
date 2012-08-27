@@ -11,7 +11,7 @@ func TestWord(t *testing.T) {
 
 func TestWords(t *testing.T) {
 	print("\n")
-	satz := "case.UcAll returns a copy of the string s with all unicode words mapped to their upper case\n"
+	satz := "case.UcAll returns a copy of     the string s with all unicode				 words mapped to their upper case\n"
 	satz = UcAll(satz)
 	print(satz)
 }
@@ -27,5 +27,12 @@ func TestUnCamel(t *testing.T) {
 	print("\n")
 	satz := "case.UnCamelReturnsACopyOfTheStringSWithTheWordsSeperatedBySpace\n"
 	satz = UnCamel(satz)
+	print(satz)
+}
+
+func TestUnCamelUnderScore(t *testing.T) {
+	print("\n")
+	satz := "case.UnCamelReturnsACopyOfTheStringSWithTheWordsSeperatedBySpace\n"
+	satz = UnCamelUnderScore(satz)
 	print(satz)
 }

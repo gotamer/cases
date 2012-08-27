@@ -4,6 +4,8 @@ package cases
 import "strings"
 import "unicode"
 
+var is bool
+
 func Uc(s string) (uc string) {
 	s = strings.Trim(s, " -_\t")
 	s = strings.ToLower(s)
@@ -18,12 +20,16 @@ func Uc(s string) (uc string) {
 }
 
 func UcAll(s string) (uc string) {
+	is = false
 	for _, word := range strings.Split(s, " ") {
-		if word != "" && word != " " {
-			uc += Uc(word)
+		if word != "" && word != " " && word != "\t" && word != "\n" {
+			is = false
+			uc += " " + Uc(word)
+		} else {
+			is = true
 		}
-		uc += " "
 	}
+	uc = strings.Trim(uc, " -_")
 	return
 }
 
@@ -31,17 +37,40 @@ func Camel(s string) (uc string) {
 	for _, word := range strings.Split(s, " ") {
 		if word != "" && word != " " && word != "_" && word != "-" {
 			uc += Uc(word)
+		} else {
+			uc += ""
 		}
-		uc += ""
 	}
 	return
 }
 
 func UnCamel(text string) (newtext string) {
+	is = false
 	for _, s := range text {
 		if isSeparator(s) {
-			newtext += " " + string(s)
+			if is != true {
+				newtext += " " + string(s)
+			} else {
+				continue
+			}
 		} else {
+			newtext += string(s)
+		}
+	}
+	return newtext
+}
+
+func UnCamelUnderScore(text string) (newtext string) {
+	is = false
+	for _, s := range text {
+		if isSeparator(s) {
+			if is != true {
+				newtext += "_" + string(s)
+			} else {
+				continue
+			}
+		} else {
+			is = false
 			newtext += string(s)
 		}
 	}
