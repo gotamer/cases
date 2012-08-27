@@ -1,16 +1,26 @@
-Go String Manipulation
+Go String Case Manipulation
 =======
 
-###`strings.Uc(s string)`
-Uc returns a copy of the string s with the first unicode words first letter mapped to it's upper case  
+###`cases.Uc(s string)`
+Uc returns a copy of the string s with the first unicode words, first letter mapped to it's upper case  
+
+###`cases.UcAll(s string)`
+UcAll returns a copy of the string s with all unicode words first letter mapped to their upper case
+
+### CamelCase `cases.Camel(s string)` 
+Camel returns a copy of the string s with all unicode words first letter mapped to their upper case, and saces removed 
+
+
+###`cases.Uc(s string)`
+Uc returns a copy of the string s with the first unicode words, first letter mapped to it's upper case  
 
 ```go
 package main
 
-import "gotamer/strings"
+import "gotamer/cases"
 
 func main(){
-	word := "uc returns a copy of the string s with the first unicode words first letter mapped to it's upper case\n"
+	word := "uc returns a copy of the string s with the first unicode words, first letter mapped to it's upper case\n"
 	word = strings.Uc(word)
 	print(word)
 
@@ -24,7 +34,7 @@ Uc returns a copy of the string s with the first unicode words first letter mapp
 Run finished 0, process exited normally.
 
 
-###`strings.UcAll(s string)`
+###`cases.UcAll(s string)`
 UcAll returns a copy of the string s with all unicode words first letter mapped to their upper case
 
 
