@@ -86,6 +86,97 @@ func UnCamelUnderScore(text string) (newtext string) {
 	return newtext
 }
 
+// UnderScore returns a copy of the string s with all the words seperated by underscore
+func UnderScore(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+	is = false
+	for _, r := range text {
+
+		if unicode.IsSpace(r) {
+			if is != true {
+				is = true
+				newtext += "_"
+			}
+		} else {
+			is = false
+			newtext += string(r)
+		}
+	}
+	return newtext
+}
+
+// Dash returns a copy of the string s with all the words seperated by dashes
+func Dash(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+	is = false
+	for _, r := range text {
+
+		if unicode.IsSpace(r) {
+			if is != true {
+				is = true
+				newtext += "-"
+			}
+		} else {
+			is = false
+			newtext += string(r)
+		}
+	}
+	return newtext
+}
+
+// DashUnder returns a copy of the string s with words seperated by dashes 
+// or underscore depending on if the word is an upper case or lower case word
+func DashUnder(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+
+	for _, r := range text {
+		s := string(r)
+		if unicode.IsSpace(r) {
+			is = true
+		} else {
+			if is == true {
+				if unicode.IsUpper(r) {
+					newtext += "_" + strings.ToLower(s)
+				} else {
+					newtext += "-" + s
+				}
+			} else {
+				newtext += s
+			}
+			is = false
+		}
+	}
+	return newtext
+}
+
+// UnDashUnder undoes DashUnder
+func UnDashUnder(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+	is = false
+	for _, r := range text {
+		s := string(r)
+		if s == "-" {
+			is = false
+			newtext += " "
+		} else if s == "_" {
+			is = true
+			newtext += " "
+		} else {
+			if is == true {
+				newtext += strings.ToUpper(s)
+			} else {
+				newtext += s
+			}
+			is = false
+		}
+	}
+	return newtext
+}
+
 // isSeparator reports whether the rune could mark a word boundary.
 // TODO: update when package unicode captures more of the properties.
 func isSeparator(r rune) bool {
