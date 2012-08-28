@@ -1,4 +1,5 @@
-// cases.go
+// Provides conversion and case manipulation, 
+// such as upper case word, upper case words, camel case etc.  
 package cases
 
 import "strings"
