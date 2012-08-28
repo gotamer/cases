@@ -1,6 +1,9 @@
 Go String Case Manipulation
 ===========================
 
+Following docs are no longer maintain please see [Docs][1] for latest updates
+
+
 ###`cases.Uc(s string)`
 Uc returns a copy of the string s with the first unicode words, first letter mapped to it's upper case  
 
@@ -12,3 +15,6 @@ Camel returns a copy of the string s with all unicode words, first letters mappe
 
 ### Un Camel Case `cases.UnCamel(s string)` 
 UnCamel returns a copy of the string s with all upper case letters seperated by spaces
+
+
+[1]: http://go.pkgdoc.org/github.com/gotamer/cases "Docs"

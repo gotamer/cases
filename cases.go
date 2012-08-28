@@ -6,6 +6,8 @@ import "unicode"
 
 var is bool
 
+// Uc returns a copy of the string s with the first unicode words, 
+// first letter mapped to it's upper case  
 func Uc(s string) (uc string) {
 	s = strings.Trim(s, " -_\t")
 	s = strings.ToLower(s)
@@ -19,6 +21,8 @@ func Uc(s string) (uc string) {
 	return
 }
 
+// UcAll returns a copy of the string s with all unicode words,
+// first letters mapped to their upper case
 func UcAll(s string) (uc string) {
 	is = false
 	for _, word := range strings.Split(s, " ") {
@@ -33,9 +37,11 @@ func UcAll(s string) (uc string) {
 	return
 }
 
+// Camel returns a copy of the string s with all unicode words,
+// first letters mapped to their upper case, and spaces removed 
 func Camel(s string) (uc string) {
 	for _, word := range strings.Split(s, " ") {
-		if word != "" && word != " " && word != "_" && word != "-" {
+		if word != "" && word != " " && word != "_" && word != "-" && word != "\t" && word != "\n" {
 			uc += Uc(word)
 		} else {
 			uc += ""
@@ -44,6 +50,7 @@ func Camel(s string) (uc string) {
 	return
 }
 
+// UnCamel returns a copy of the string s with all upper case letters seperated by spaces
 func UnCamel(text string) (newtext string) {
 	is = false
 	for _, s := range text {
@@ -60,6 +67,7 @@ func UnCamel(text string) (newtext string) {
 	return newtext
 }
 
+// UnCamel returns a copy of the string s with all upper case letters seperated by underscore
 func UnCamelUnderScore(text string) (newtext string) {
 	is = false
 	for _, s := range text {
