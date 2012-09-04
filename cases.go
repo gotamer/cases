@@ -9,17 +9,10 @@ var is bool
 
 // Uc returns a copy of the string s with the first unicode words, 
 // first letter mapped to it's upper case  
-func Uc(s string) (uc string) {
-	s = strings.Trim(s, " -_\t")
-	s = strings.ToLower(s)
-	for pos, char := range strings.Split(s, "") {
-		if pos == 0 {
-			uc += strings.ToUpper(char)
-			continue
-		}
-		uc += char
-	}
-	return
+func Uc(s string) string {
+	s = strings.TrimRight(s, " -_\t")
+	s = strings.TrimLeft(s, " -_\t\n\r")
+	return strings.ToUpper(s[0:1]) + s[1:]
 }
 
 // UcAll returns a copy of the string s with all unicode words,
@@ -108,11 +101,9 @@ func UnderScore(text string) (newtext string) {
 
 // Dash returns a copy of the string s with all the words seperated by dashes
 func Dash(text string) (newtext string) {
-
 	text = strings.Trim(text, " -_\t\n\r")
 	is = false
 	for _, r := range text {
-
 		if unicode.IsSpace(r) {
 			if is != true {
 				is = true
@@ -126,20 +117,33 @@ func Dash(text string) (newtext string) {
 	return newtext
 }
 
+// UnDash replaces dashes with spaces
+func UnDash(t string) (n string) {
+	t = strings.Trim(t, " -_\t\n\r")
+	for _, r := range t {
+		s := string(r)
+		if s == "-" {
+			s = " "
+		}
+		n += s
+	}
+	return
+}
+
 // DashUnder returns a copy of the string s with words seperated by dashes 
 // or underscore depending on if the word is an upper case or lower case word
 func DashUnder(text string) (newtext string) {
 
 	text = strings.Trim(text, " -_\t\n\r")
 
-	for _, r := range text {
+	for c, r := range text {
 		s := string(r)
 		if unicode.IsSpace(r) {
 			is = true
 		} else {
-			if is == true {
+			if is == true || c == 0 {
 				if unicode.IsUpper(r) {
-					newtext += "_" + strings.ToLower(s)
+					newtext += "_" + s
 				} else {
 					newtext += "-" + s
 				}
@@ -149,7 +153,7 @@ func DashUnder(text string) (newtext string) {
 			is = false
 		}
 	}
-	return newtext
+	return strings.ToLower(newtext)
 }
 
 // UnDashUnder undoes DashUnder
@@ -174,7 +178,7 @@ func UnDashUnder(text string) (newtext string) {
 			is = false
 		}
 	}
-	return newtext
+	return strings.Trim(newtext, " ")
 }
 
 // isSeparator reports whether the rune could mark a word boundary.
