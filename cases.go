@@ -189,7 +189,7 @@ func Udu(text string) (newtext string) {
 
 	text = strings.Trim(text, " -_\t\n\r")
 	is = false
-	for _, r := range text {
+	for c, r := range text {
 		s := string(r)
 		if c == 0 {
 			newtext += strings.ToUpper(s)
