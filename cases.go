@@ -162,7 +162,7 @@ func Du(text string) (newtext string) {
 
 	text = strings.Trim(text, " -_\t\n\r")
 
-	for c, r := range text {
+	for _, r := range text {
 		s := string(r)
 		if unicode.IsSpace(r) {
 			is = true
