@@ -167,9 +167,7 @@ func Du(text string) (newtext string) {
 		if unicode.IsSpace(r) {
 			is = true
 		} else {
-			if c == 0 {
-				continue
-			} else if is == true {
+			if is == true {
 				if unicode.IsUpper(r) {
 					newtext += "_" + s
 				} else {
