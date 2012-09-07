@@ -157,6 +157,60 @@ func DashUnder(text string) (newtext string) {
 	return strings.ToLower(newtext)
 }
 
+// Du is like DashUnder but it assumes the first letter of the text to be always upper case
+func Du(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+
+	for c, r := range text {
+		s := string(r)
+		if unicode.IsSpace(r) {
+			is = true
+		} else {
+			if c == 0 {
+				continue
+			} else if is == true {
+				if unicode.IsUpper(r) {
+					newtext += "_" + s
+				} else {
+					newtext += "-" + s
+				}
+			} else {
+				newtext += s
+			}
+			is = false
+		}
+	}
+	return strings.ToLower(newtext)
+}
+
+// Udu undoes Du
+func Udu(text string) (newtext string) {
+
+	text = strings.Trim(text, " -_\t\n\r")
+	is = false
+	for _, r := range text {
+		s := string(r)
+		if c == 0 {
+			newtext += strings.ToUpper(s)
+		} else if s == "-" {
+			is = false
+			newtext += " "
+		} else if s == "_" {
+			is = true
+			newtext += " "
+		} else {
+			if is == true {
+				newtext += strings.ToUpper(s)
+			} else {
+				newtext += s
+			}
+			is = false
+		}
+	}
+	return strings.Trim(newtext, " -_")
+}
+
 // UnDashUnder undoes DashUnder
 func UnDashUnder(text string) (newtext string) {
 
