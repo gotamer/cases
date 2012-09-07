@@ -1,5 +1,6 @@
 // Provides conversion and case manipulation, 
-// such as upper case word, upper case words, camel case etc.  
+// such as upper case word, upper case words, 
+// camel case, dash, underscore etc.  
 package cases
 
 import "strings"
